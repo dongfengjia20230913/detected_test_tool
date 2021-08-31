@@ -10,10 +10,10 @@ import math
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
-import common.utils as utils
+# import common.utils as utils
 
 import cv2
-import common.utils as utils
+# import common.utils as utils
 import matplotlib.pyplot as plt
 import common.ap_tool as ap_tool
 from common.ap_tool import print_log
@@ -135,10 +135,13 @@ if __name__ == '__main__':
     mAp = round(sum_ap/len(ap_infos), 3)
     print_log('\nmAp:{}'.format(mAp))
 
-
+    print('draw_thresh_count...')
     figure_tool.draw_thresh_count(ap_infos, ap_tool.log_out_dir)
+    print('draw_recall_fpr...')
     figure_tool.draw_recall_fpr(ap_infos, ap_tool.log_out_dir)
+    print('draw_ap...')
     figure_tool.draw_ap(ap_infos, ap_tool.log_out_dir)
+    print('draw_gt_tp_fp...')
     figure_tool.draw_gt_tp_fp(ap_infos, ap_tool.log_out_dir)
     import shutil
     shutil.copy('AI_Perf_tool/image/test_result.html', ap_tool.log_out_dir)

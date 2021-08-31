@@ -34,6 +34,8 @@ def draw_thresh_count(ap_infos, image_save_dir):
         y_max=max(max(compareInfo.tp10),y_max)*1.2
 
     #2.draw sub plot
+    sns.set_theme() 
+    sns.axes_style("darkgrid")
     fig, axes=plt.subplots(class_num, 1, figsize=(plot_w, plot_w*class_num*0.5)) 
     ax_index = 0
     for ap_info in ap_infos:
@@ -71,6 +73,8 @@ def draw_recall_fpr(ap_infos:list, image_save_dir, max_cols = 1):
     plot_rows = math.ceil(class_num/plot_cols)
 
     #2.draw sub plot
+    sns.set_theme() 
+    sns.axes_style("darkgrid")
     fig = plt.figure(figsize=(plot_w*plot_cols , plot_w*plot_rows*0.5))
     # sns.set_theme(style="darkgrid")
     for row in range(plot_rows):
@@ -129,7 +133,9 @@ def draw_ap(ap_infos, image_save_dir):
     #2.draw sub plot
     f, ax = plt.subplots(figsize=(plot_w, plot_w*0.8))
     #sns.set_theme(style="white")
-    sns.set_theme(style="darkgrid")
+    sns.set_theme()
+    sns.axes_style("darkgrid")
+    # sns.set_theme(style="darkgrid")
     sns.set_color_codes("muted")
     ax.set(xlim=(0, 1.1))
     splot = sns.barplot(x=ap, y=class_name, ax =ax, color='b')
