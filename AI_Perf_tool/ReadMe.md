@@ -1,4 +1,6 @@
 ## 数据格式
+val目录是测试图片样例，Jpg图片已经删除只有对应的标注文件，用于测试验证结果
+
 本地测试的数据集是使用MRLabeler标注的检测数据，数据目录结构如下
 ```
 └── val
@@ -111,3 +113,4 @@ precision_10: [0.992, 0.992, 0.992, 0.998, 0.998, 0.998, 0.998, 1.0, 1.0, 0]
 ```
 python AI_Perf_tool/score_create.py -log val/phone_70000.txt -val val
 ```
+运行成功后，测试的结果会整合到 AI_Perf_tool/image/test_result.html中
