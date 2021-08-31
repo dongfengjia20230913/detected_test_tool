@@ -1,4 +1,5 @@
-## 数据格式
+
+## 1. 数据格式
 本地测试的数据集是使用MRLabeler标注的检测数据，数据目录结构如下
 ```
 └── val
@@ -13,7 +14,7 @@ Annotations: voc格式的标注文件
 labels: yolo格式的标注文件,数据格式为[class_id, centx,ceny,w,h], 数据是相对图片宽和搞归一化后的数据
 mrconfig.xml: 数据说明文件，包括分类名称的定义
 
-## 生成ground truth
+## 2. 生成ground truth
 ```
 python AI_Perf_tool/Create_ground_truth_txt.py  -test val
 
@@ -30,7 +31,7 @@ hand 279 64 307 105
 face 252 42 299 93
 ```
 
-## 生成预测文件
+## 3. 生成预测文件
 
 ```
 python AI_Perf_tool/Create_detection_ret_txt.py  -log val/phone_84000.txt  -o val
@@ -48,12 +49,12 @@ detect out: phone : 0.971 : 77 94 118 156 :../val/JPEGImages/01041816390000971_3
 -o: 表示预测日志文件生成预测结果文件目录，存在指定目录下的detection_result目录下
 
 
-## 根据预测文件和gt文件生成指标
-### 召回率和精准率
+## 4. 根据预测文件和gt文件生成指标
+### 4.1 召回率和精准率
 
 |---- |  正例   | 反例  |
 |---- |  ----  | ----  |
-|正例 | TP  	  | FP |
+|正例 | TP      | FP |
 |反例 | FN      | TN |
 
 精度说明：
@@ -95,9 +96,10 @@ precision_10: [0.992, 0.992, 0.992, 0.998, 0.998, 0.998, 0.998, 1.0, 1.0, 0]
 
 ```
 
-### AP-Average Precision
+### 4.2 AP-Average Precision
 以Recall为横轴，Precision为纵轴，就可以画出一条PR曲线，PR曲线下的面积就定义为AP，即：
-![](./image/ap.jpg)
+![tp-fp](https://img-blog.csdnimg.cn/1da760feb12040a5ba4a9143b2fa59d6.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Y-k6aOO5a2Q,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 
 有积分的定义可以知道，上述图像，单位横轴长度的面积计算公式为
 
@@ -106,8 +108,23 @@ precision_10: [0.992, 0.992, 0.992, 0.998, 0.998, 0.998, 0.998, 1.0, 1.0, 0]
 
 
 
-## 命令整合
+## 5. 命令整合
 通过运行以下命令，可以直接获取gt，dr文件和对应的结果，map等结果会汇总显示在一个html中
 ```
 python AI_Perf_tool/score_create.py -log val/phone_70000.txt -val val
 ```
+[github](https://github.com/jdf-eng/detected_test_tool.git), 欢迎star
+
+## 6. 最终的图片生成结果
+### 6.1 mAp
+![map](https://img-blog.csdnimg.cn/fdefca40649a49c985a9ec1439ebb7f9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Y-k6aOO5a2Q,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+### 6.2 rec-fpr
+
+![rec-fpr](https://img-blog.csdnimg.cn/46cd3b79a5d94cb995ef5a0584218b0c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Y-k6aOO5a2Q,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+### 6.3 阈值分布
+![thresh_count](https://img-blog.csdnimg.cn/3e294f86b58c4461be84095c5d476114.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Y-k6aOO5a2Q,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+### 6.4 tp-fp
+![tp-fp](https://img-blog.csdnimg.cn/49f7a087e97e4a16a19a1155effa119e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Y-k6aOO5a2Q,size_20,color_FFFFFF,t_70,g_se,x_16)
