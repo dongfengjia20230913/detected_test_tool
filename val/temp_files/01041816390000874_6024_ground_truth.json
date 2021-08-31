@@ -1,0 +1,1 @@
+[{"class_name": "phone", "bbox": "86 235 127 275", "used": true}, {"class_name": "hand", "bbox": "72 227 115 281", "used": true}, {"class_name": "hand", "bbox": "183 316 220 370", "used": true}, {"class_name": "face", "bbox": "108 90 186 148", "used": false}]

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<dataset>
+	<name>smoke</name>
+	<year>2020</year>
+	<imagedir>JPEGImages</imagedir>
+	<annotationdir>Annotations</annotationdir>
+	<labelsdir>labels</labelsdir>
+	<currentlabelingclass>smoke</currentlabelingclass>
+	<lastlabeledindex>0</lastlabeledindex>
+	<bsavexml>true</bsavexml>
+	<bsavetxt>true</bsavetxt>
+	<classes>
+		<class>phone</class>
+		<class>face</class>
+		<class>hand</class>
+		<class>cup_bottle</class>
+	</classes>
+</dataset>
